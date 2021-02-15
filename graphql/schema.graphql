@@ -1,15 +1,34 @@
 type User {
     id: ID!
     name: String!
-    email: String
+    email: String!
+    articles: [Article!]! @hasMany
 }
 
 type Article {
-    id:ID!
-
+    id: ID!
+    title: String!
+    content: String!
+    created_at: String!
 }
 
+# type UserPaginator {
+#     paginatorInfo: PaginatorInfo!
+#     data: [User!]!
+# }
+
+# type PaginatorInfo {
+#     count: Int!
+#     currentPage: Int!
+#     firstItem: Int
+#     hasMorePages: Boolean!
+#     lastItem: Int
+#     lastPage: Int!
+#     perPage: Int!
+#     total: Int!
+# }
+
 type Query {
-     users: [User!]! @all(model: "App\\Models\\User")
-    user(id: ID @eq): User @find(model: "App\\Models\\User")
+    user(id: ID! @eq): User @find
+    users: [User!]! @all
 }
