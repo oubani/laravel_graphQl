@@ -1,3 +1,10 @@
+type Query {
+    user(id: ID! @eq): User @find
+    users: [User!]! @paginate(defaultCount: 5)
+    articles: [Article!]! @paginate(defaultCount: 5)
+    Article(id: ID! @eq): Article @find
+}
+
 type User {
     id: ID!
     name: String!
@@ -11,25 +18,4 @@ type Article {
     content: String!
     created_at: String!
     author: User! @belongsTo(relation: "user")
-}
-
-# type UserPaginator {
-#     paginatorInfo: PaginatorInfo!
-#     data: [User!]!
-# }
-
-# type PaginatorInfo {
-#     count: Int!
-#     currentPage: Int!
-#     firstItem: Int
-#     hasMorePages: Boolean!
-#     lastItem: Int
-#     lastPage: Int!
-#     perPage: Int!
-#     total: Int!
-# }
-
-type Query {
-    user(id: ID! @eq): User @find
-    users: [User!]! @all
 }
