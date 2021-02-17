@@ -5,6 +5,14 @@ type Query {
     Article(id: ID! @eq): Article @find
 }
 
+type Mutation {
+    createUser(
+        name: String! @rules(apply: ["required", "string", "min:3"])
+        email: String! @rules(apply: ["email", "unique:users"])
+        password: String! @rules(apply: ["min:6"])
+    ): User @create
+}
+
 type User {
     id: ID!
     name: String!
