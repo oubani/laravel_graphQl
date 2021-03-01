@@ -18,4 +18,5 @@ you'll see the screen
 
 you can play with using this
 
+you can run this query the get name and email's
 `query users { users { paginatorInfo { total currentPage hasMorePages } data { name email } } }`
